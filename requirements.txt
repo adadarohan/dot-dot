@@ -1,0 +1,4 @@
+matplotlib==3.5.0
+numpy==1.21.2
+opencv_python==4.5.3.56
+tqdm==4.62.3
