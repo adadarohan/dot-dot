@@ -181,9 +181,9 @@ if uploaded_file is not None:
         st.image(blank_image, caption="Output Dots & Numbers",  use_column_width='always', channels="BGR")
 
     my_bar.progress(1.0)
-    cv2.imwrite('dots.jpg',blank_image)
+    cv2.imwrite('output/dots.jpg',blank_image)
 
-    with open("dots.jpg", "rb") as file:
+    with open("output/dots.jpg", "rb") as file:
         btn = container.download_button(
             label="Download dot-to-dot",
             data=file,
