@@ -21,7 +21,7 @@ my_bar = container.progress(0)
 
 stats = st.container()
 stats.header('Stats for nerds 😎')
-col1, col2, col3 = stats.columns(3)
+col0, col1, col2, col3 = stats.columns(4)
 
 st.sidebar.markdown('This website was built by [Rohan Kapur](https://github.com/adadarohan) and inspired by [Thomas Pavitte](https://thomasmakesstuff.com/)\'s 1000 dot-to-dot book')
 
@@ -35,6 +35,8 @@ if uploaded_file is not None:
     file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
     imgunr = cv2.imdecode(file_bytes, 1)
     #imgunr = cv2.imread(uploaded_file) 
+    with col0:
+        st.image(imgunr, caption="Original Image", use_column_width='always', channels="BGR")
 
     r = 200.0 / imgunr.shape[0]
     dim = (int(imgunr.shape[1] * r), 200)
@@ -129,7 +131,7 @@ if uploaded_file is not None:
 
         dist = math.sqrt(((last_dot[0] - sorted_dots[i][0] )**2) + ((last_dot[1] - sorted_dots[i][1])**2))
 
-        if abs(pgrad - fgrad) < 10 or dist < 1.1: #if the change in gradient is less than 0.2
+        if abs(pgrad - fgrad) < 10 or dist < 1.1 : #if the change in gradient is less than 0.2
             fdots.remove(sorted_dots[i]) #remove the middle one
 
 
@@ -146,7 +148,7 @@ if uploaded_file is not None:
     # cv2.imshow('Removed Straights', blank_image)
     # cv2.waitKey(0)
     with col2:
-        st.image(blank_image, caption="Output Lines",  use_column_width='always')
+        st.image(blank_image, caption="Output Lines",  use_column_width='always', channels="BGR")
 
     cv2.imwrite('C:\code\dot-dot\output\lines.jpg',blank_image)
 
@@ -176,7 +178,7 @@ if uploaded_file is not None:
     # cv2.imshow('Added Dots', blank_image)
     # cv2.waitKey(0)
     with col3:
-        st.image(blank_image, caption="Output Dots & Numbers",  use_column_width='always')
+        st.image(blank_image, caption="Output Dots & Numbers",  use_column_width='always', channels="BGR")
 
     my_bar.progress(1.0)
     cv2.imwrite('dots.jpg',blank_image)
